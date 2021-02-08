@@ -4,6 +4,7 @@
             <ul class="hidden md:flex md:flex-row" id="mobileMenu">
                 <li class="pr-5"><router-link to="/" exact>Home</router-link></li>
                 <li class="pr-5"><router-link to="/about" exact>About</router-link></li>
+                <li class="pr-5"><a href="/docs/">Docs</a></li>
             </ul>
         </nav>
     </div>
