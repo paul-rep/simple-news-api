@@ -1,0 +1,311 @@
+openapi: 3.0.3
+info:
+    title: News
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /api/articles:
+        get:
+            summary: 'Get Articles'
+            description: 'List all the articles'
+            parameters:
+                -
+                    in: query
+                    name: page
+                    description: 'Which page to show.'
+                    example: 10
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Which page to show.'
+                        example: 10
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: []
+                                    links: { first: 'http://localhost/api/articles?page=1', last: 'http://localhost/api/articles?page=2', prev: 'http://localhost/api/articles?page=9', next: null }
+                                    meta: { current_page: 10, from: null, last_page: 2, links: [{ url: 'http://localhost/api/articles?page=9', label: '&laquo; Previous', active: false }, { url: 'http://localhost/api/articles?page=1', label: 1, active: false }, { url: 'http://localhost/api/articles?page=2', label: 2, active: false }, { url: null, label: 'Next &raquo;', active: false }], path: 'http://localhost/api/articles', per_page: 6, to: null, total: 12 }
+                                properties:
+                                    data: { type: array, example: [] }
+                                    links: { type: object, example: { first: 'http://localhost/api/articles?page=1', last: 'http://localhost/api/articles?page=2', prev: 'http://localhost/api/articles?page=9', next: null } }
+                                    meta: { type: object, example: { current_page: 10, from: null, last_page: 2, links: [{ url: 'http://localhost/api/articles?page=9', label: '&laquo; Previous', active: false }, { url: 'http://localhost/api/articles?page=1', label: 1, active: false }, { url: 'http://localhost/api/articles?page=2', label: 2, active: false }, { url: null, label: 'Next &raquo;', active: false }], path: 'http://localhost/api/articles', per_page: 6, to: null, total: 12 } }
+            tags:
+                - Articles
+            security: []
+        post:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: multipart/form-data
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Articles
+            requestBody:
+                required: true
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                title:
+                                    type: string
+                                    description: ''
+                                    example: tempore
+                                content:
+                                    type: string
+                                    description: ''
+                                    example: modi
+                                image:
+                                    type: string
+                                    format: binary
+                                    description: 'The value must be an image.'
+                            required:
+                                - title
+                                - content
+                                - image
+            security: []
+        delete:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Articles
+            security: []
+    '/api/articles/{article}':
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'No query results for model [App\Models\Article] quas'
+                                    exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                                    file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php
+                                    line: 368
+                                    trace: [{ file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php, line: 317, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: /Users/admin/Desktop/news/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php, line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php, line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 130, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php, line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php, line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php, line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: /Users/admin/Desktop/news/vendor/fruitcake/laravel-cors/src/HandleCors.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: /Users/admin/Desktop/news/vendor/fideloper/proxy/src/TrustProxies.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/Util.php, line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/Container.php, line: 610, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Command/Command.php, line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Application.php, line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Application.php, line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Application.php, line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Console/Application.php, line: 93, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php, line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/artisan, line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'No query results for model [App\Models\Article] quas' }
+                                    exception: { type: string, example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException }
+                                    file: { type: string, example: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php }
+                                    line: { type: integer, example: 368 }
+                                    trace: { type: array, example: [{ file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php, line: 317, function: prepareException, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: /Users/admin/Desktop/news/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php, line: 54, function: render, class: Illuminate\Foundation\Exceptions\Handler, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php, line: 51, function: render, class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 130, function: handleException, class: Illuminate\Routing\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php, line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 695, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 670, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php, line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php, line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: /Users/admin/Desktop/news/vendor/fruitcake/laravel-cors/src/HandleCors.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: /Users/admin/Desktop/news/vendor/fideloper/proxy/src/TrustProxies.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /Users/admin/Desktop/news/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/Util.php, line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Container/Container.php, line: 610, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Command/Command.php, line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Application.php, line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Application.php, line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/vendor/symfony/console/Application.php, line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Console/Application.php, line: 93, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php, line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: /Users/admin/Desktop/news/artisan, line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Articles
+            security: []
+        put:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: multipart/form-data
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Articles
+            requestBody:
+                required: true
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                title:
+                                    type: string
+                                    description: ''
+                                    example: temporibus
+                                content:
+                                    type: string
+                                    description: ''
+                                    example: asperiores
+                                image:
+                                    type: string
+                                    format: binary
+                                    description: 'The value must be an image.'
+                            required:
+                                - title
+                                - content
+                                - image
+            security: []
+        parameters:
+            -
+                in: path
+                name: article
+                description: ''
+                example: quas
+                required: true
+                schema:
+                    type: string
+    /api/documentation:
+        get:
+            summary: 'Display Swagger API page.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!-- HTML for static distribution bundle build -->\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>News Api</title>\n  <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700\" rel=\"stylesheet\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost/docs/asset/swagger-ui.css?v=c376143ce0c11945b48fa5ba42adf6c9\" >\n  <link rel=\"icon\" type=\"image/png\" href=\"http://localhost/docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6\" sizes=\"32x32\" />\n  <link rel=\"icon\" type=\"image/png\" href=\"http://localhost/docs/asset/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384\" sizes=\"16x16\" />\n  <style>\n    html\n    {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n    }\n    *,\n    *:before,\n    *:after\n    {\n        box-sizing: inherit;\n    }\n\n    body {\n      margin:0;\n      background: #fafafa;\n    }\n  </style>\n</head>\n\n<body>\n\n<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"position:absolute;width:0;height:0\">\n  <defs>\n    <symbol viewBox=\"0 0 20 20\" id=\"unlocked\">\n          <path d=\"M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z\"></path>\n    </symbol>\n\n    <symbol viewBox=\"0 0 20 20\" id=\"locked\">\n      <path d=\"M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z\"/>\n    </symbol>\n\n    <symbol viewBox=\"0 0 20 20\" id=\"close\">\n      <path d=\"M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z\"/>\n    </symbol>\n\n    <symbol viewBox=\"0 0 20 20\" id=\"large-arrow\">\n      <path d=\"M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z\"/>\n    </symbol>\n\n    <symbol viewBox=\"0 0 20 20\" id=\"large-arrow-down\">\n      <path d=\"M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z\"/>\n    </symbol>\n\n\n    <symbol viewBox=\"0 0 24 24\" id=\"jump-to\">\n      <path d=\"M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z\"/>\n    </symbol>\n\n    <symbol viewBox=\"0 0 24 24\" id=\"expand\">\n      <path d=\"M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z\"/>\n    </symbol>\n\n  </defs>\n</svg>\n\n<div id=\"swagger-ui\"></div>\n\n<script src=\"http://localhost/docs/asset/swagger-ui-bundle.js?v=b58b193aaef86e746f334fb13682d4b1\"> </script>\n<script src=\"http://localhost/docs/asset/swagger-ui-standalone-preset.js?v=bc0aaa4b7b8cbb9cae952355dd816703\"> </script>\n<script>\nwindow.onload = function() {\n  // Build a system\n  const ui = SwaggerUIBundle({\n    dom_id: '#swagger-ui',\n\n    url: \"http://localhost/docs/api-docs.json\",\n    operationsSorter: null,\n    configUrl: null,\n    validatorUrl: null,\n    oauth2RedirectUrl: \"http://localhost/api/oauth2-callback\",\n\n    requestInterceptor: function(request) {\n      request.headers['X-CSRF-TOKEN'] = '';\n      return request;\n    },\n\n    presets: [\n      SwaggerUIBundle.presets.apis,\n      SwaggerUIStandalonePreset\n    ],\n\n    plugins: [\n      SwaggerUIBundle.plugins.DownloadUrl\n    ],\n\n    layout: \"StandaloneLayout\"\n  })\n\n  window.ui = ui\n}\n</script>\n</body>\n\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+    /api/oauth2-callback:
+        get:
+            summary: 'Display Oauth2 callback pages.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en-US\">\n<head>\n    <title>Swagger UI: OAuth2 Redirect</title>\n</head>\n<body>\n</body>\n</html>\n<script>\n    'use strict';\n    function run () {\n        var oauth2 = window.opener.swaggerUIRedirectOauth2;\n        var sentState = oauth2.state;\n        var redirectUrl = oauth2.redirectUrl;\n        var isValid, qp, arr;\n\n        if (/code|token|error/.test(window.location.hash)) {\n            qp = window.location.hash.substring(1);\n        } else {\n            qp = location.search.substring(1);\n        }\n\n        arr = qp.split(\"&\")\n        arr.forEach(function (v,i,_arr) { _arr[i] = '\"' + v.replace('=', '\":\"') + '\"';})\n        qp = qp ? JSON.parse('{' + arr.join() + '}',\n                function (key, value) {\n                    return key === \"\" ? value : decodeURIComponent(value)\n                }\n        ) : {}\n\n        isValid = qp.state === sentState\n\n        if ((\n          oauth2.auth.schema.get(\"flow\") === \"accessCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorizationCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorization_code\"\n        ) && !oauth2.auth.code) {\n            if (!isValid) {\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"warning\",\n                    message: \"Authorization may be unsafe, passed state was changed in server Passed state wasn't returned from auth server\"\n                });\n            }\n\n            if (qp.code) {\n                delete oauth2.state;\n                oauth2.auth.code = qp.code;\n                oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});\n            } else {\n                let oauthErrorMsg\n                if (qp.error) {\n                    oauthErrorMsg = \"[\"+qp.error+\"]: \" +\n                        (qp.error_description ? qp.error_description+ \". \" : \"no accessCode received from the server. \") +\n                        (qp.error_uri ? \"More info: \"+qp.error_uri : \"\");\n                }\n\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"error\",\n                    message: oauthErrorMsg || \"[Authorization failed]: no accessCode received from the server\"\n                });\n            }\n        } else {\n            oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});\n        }\n        window.close();\n    }\n\n    window.addEventListener('DOMContentLoaded', function () {\n      run();\n    });\n</script>\n"
+            tags:
+                - Endpoints
+            security: []
+    /api/user:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
