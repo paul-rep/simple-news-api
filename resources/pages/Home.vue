@@ -4,7 +4,7 @@
     <div v-if="articles" class="container my-12 mx-auto px-4 md:px-12">
         <div class="flex flex-wrap -mx-1 lg:-mx-4">
             <ArticleLComponent
-                :key="article.id" v-for="article in articles" :article="article"></ArticleLComponent>
+               v-cloak :key="article.id" v-for="article in articles" :article="article"></ArticleLComponent>
         </div>
     </div>
     <div v-else>No Articles Yet</div>
@@ -29,5 +29,7 @@ export default {
 </script>
 
 <style scoped>
-
+[v-cloak] {
+    display: none;
+}
 </style>

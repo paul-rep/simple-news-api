@@ -16,7 +16,5 @@ export default {
 </script>
 
 <style scoped>
-.active{
-    display: block;
-}
+
 </style>
